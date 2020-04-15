@@ -18,7 +18,7 @@ jobs:
         docker build . --file Dockerfile --tag minibox
         docker-compose build
         docker-compose up
-        docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
+        echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
         docker tag minibox foundeo/minibox:latest
         docker push foundeo/minibox:latest
         

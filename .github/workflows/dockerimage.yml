@@ -13,7 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build and Publish the Docker image
       run: |
+        docker build . --file Dockerfile --tag minibox:$(date +%s)
         docker-compose build
         docker-compose up
+        docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
+        docker push foundeo/minibox:latest
+        

@@ -21,3 +21,7 @@ To test it out, you can simply run this command:
 ## Tags
 
 Right now it is just tagged under `latest` which should get you the latest version of commandbox.
+
+## Thanks
+
+Thanks to Brad Wood / Ortus for not only creating commandbox, but also creating box-thin and box-light which greatly simplified this process.

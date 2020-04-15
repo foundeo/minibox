@@ -2,5 +2,5 @@ version: '3.7'
 services:
   minibox:
     build: .
-    command: box version
+    command: sleep 500000 #box version
 

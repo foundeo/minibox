@@ -43,7 +43,8 @@ RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortu
 
 RUN mv /opt/box/box-thin /opt/box/box
 
-RUN zip -q --delete /root/.CommandBox/lib/runwar-4.0.7-SNAPSHOT.jar "org/bouncycastle/*"
+#Looks like jgit requires SHA-256 implementation in here
+#RUN zip -q --delete /root/.CommandBox/lib/runwar-4.0.7-SNAPSHOT.jar "org/bouncycastle/*"
 
 #pack200 to reduce file sizes
 

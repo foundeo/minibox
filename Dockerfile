@@ -1,20 +1,11 @@
-FROM ubuntu:18.04 AS build
+FROM azul/zulu-openjdk-alpine:8-jre AS build
 
-ARG DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update -q \
- && apt-get upgrade -q -y \
- && apt-get install -q -y --no-install-recommends \
-        binutils \
-        openjdk-11-jdk-headless \
-        curl \
-        unzip \
-        zip
+RUN apk add zip unzip curl
 
 RUN mkdir /opt/box
 RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.0.2-alpha/box-light
 
-RUN /bin/chmod -R a+rx /opt/box/box 
+RUN chmod -R a+rx /opt/box/box 
 
 RUN /opt/box/box config set verboseErrors=true
 
@@ -52,16 +43,7 @@ RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortu
 
 RUN mv /opt/box/box-thin /opt/box/box
 
-RUN zip --delete /root/.CommandBox/lib/runwar-4.0.7-SNAPSHOT.jar "org/bouncycastle/*"
-
-FROM azul/zulu-openjdk-alpine:8-jre
-
-COPY --from=build /opt/box /opt/box
-COPY --from=build /root/.CommandBox/ /root/.CommandBox/ 
-
-RUN chmod a+x /opt/box/box
-
-RUN ln -s /opt/box/box /usr/bin/box
+RUN zip -q --delete /root/.CommandBox/lib/runwar-4.0.7-SNAPSHOT.jar "org/bouncycastle/*"
 
 #pack200 to reduce file sizes
 
@@ -74,4 +56,14 @@ RUN find /root/.CommandBox/engine/cfml/cli/lucee-server/patches/ -type f -name "
 RUN find /root/.CommandBox/engine/cfml/cli/lucee-server/patches/ -type f -name "*.lco" -exec sh -c '/usr/lib/jvm/default-jvm/bin/pack200 --strip-debug --repack "$0" "$0.jar"' {} \;
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/lucee-server/patches/*.jar
+
+FROM azul/zulu-openjdk-alpine:8-jre
+
+COPY --from=build /opt/box /opt/box
+COPY --from=build /root/.CommandBox/ /root/.CommandBox/ 
+
+RUN chmod a+x /opt/box/box
+
+RUN ln -s /opt/box/box /usr/bin/box
+
 

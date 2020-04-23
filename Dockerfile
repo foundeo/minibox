@@ -9,6 +9,10 @@ RUN chmod -R a+rx /opt/box/box
 
 RUN /opt/box/box config set verboseErrors=true
 
+RUN /opt/box/box config set server.defaults.trayEnable=false
+
+RUN /opt/box/box config set server.defaults.openBrowser=false
+
 RUN /opt/box/box version
 
 RUN /opt/box/box artifacts clean --force
@@ -70,5 +74,6 @@ COPY --from=build /root/.CommandBox/ /root/.CommandBox/
 RUN chmod a+x /opt/box/box
 
 RUN ln -s /opt/box/box /usr/bin/box
+
 
 

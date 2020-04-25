@@ -8,6 +8,10 @@ This container was built by [Foundeo Inc.](https://foundeo.com/) to provide a sm
 
 The image currently uses the _Azul OpenJDK Alpine Linux Image_ as its base.
 
+Jave Version: 8
+
+CommandBox Version: 5
+
 ## Pre-warmed
 
 The image is pre-warmed, meaning the CommandBox home has already been extracted - this should speed up the execution of commandbox.

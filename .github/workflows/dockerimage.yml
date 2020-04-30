@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
+  schedule:
+    - cron: '5 5 5 * *'
   
 
 jobs:
@@ -21,4 +23,7 @@ jobs:
         echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
         docker tag minibox foundeo/minibox:latest
         docker push foundeo/minibox:latest
+        date_version=$(date +%Y.%m)
+        docker tag minibox foundeo/minibox:$date_version
+        docker push foundeo/minibox:$date_version
         

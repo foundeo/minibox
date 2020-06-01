@@ -3,7 +3,7 @@ FROM azul/zulu-openjdk-alpine:8-jre AS build
 RUN apk add zip unzip curl
 
 RUN mkdir /opt/box
-RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.0.2-alpha/box-light
+RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.1.1/box-light
 
 RUN chmod -R a+rx /opt/box/box 
 
@@ -50,7 +50,7 @@ RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortu
 
 RUN mv /opt/box/box-thin /opt/box/box
 
-RUN zip -q --delete /root/.CommandBox/lib/runwar-4.0.7-SNAPSHOT.jar "org/bouncycastle/*"
+RUN zip -q --delete /root/.CommandBox/lib/runwar-*.jar "org/bouncycastle/*"
 
 #pack200 to reduce file sizes
 

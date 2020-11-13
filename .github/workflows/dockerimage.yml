@@ -35,7 +35,7 @@ jobs:
           
           docker tag minibox $IMAGE_ID:latest
           docker push $IMAGE_ID:latest
-          
+          date_version=$(date +%Y.%m)
           docker tag minibox $IMAGE_ID:$date_version
           docker push $IMAGE_ID:$date_version
           

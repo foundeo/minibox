@@ -28,9 +28,9 @@ jobs:
         docker push foundeo/minibox:$date_version
         docker logout
     - name: Log into github registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
     - name: Push image to github registry
-        run: |
+      run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/minibox
           
           docker tag minibox $IMAGE_ID:latest

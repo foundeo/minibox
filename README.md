@@ -24,7 +24,7 @@ To test it out, you can simply run this command:
 
 ## Tags
 
-Right now it is just tagged under `latest` which should get you the latest version of commandbox.
+The latest version is tagged under `latest` which should get you the latest version of commandbox and java. Builds are also tagged each month in the format `yyyy.mm`, for production use you may want to pin such a version. If you pin the current month there is a chance it may be updated again before the end of the month.
 
 ## Thanks
 

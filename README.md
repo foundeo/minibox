@@ -26,6 +26,11 @@ To test it out, you can simply run this command:
 
 The latest version is tagged under `latest` which should get you the latest version of commandbox and java. Builds are also tagged each month in the format `yyyy.mm`, for production use you may want to pin such a version. If you pin the current month there is a chance it may be updated again before the end of the month.
 
+| Version       | Java Version  | CommandBox Version |
+| ------------- | ------------- | ------------------ |
+| 2021.03       | 1.8           | 5.2.1+00295        |
+
+
 ## Thanks
 
 Thanks to Brad Wood / Ortus for not only creating commandbox, but also creating box-thin and box-light which greatly simplified this process.

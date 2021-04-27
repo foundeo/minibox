@@ -15,6 +15,8 @@ RUN /opt/box/box config set server.defaults.openBrowser=false
 
 RUN /opt/box/box version
 
+RUN java -version
+
 RUN /opt/box/box artifacts clean --force
 # Remove any temp files
 RUN rm -rf /root/.CommandBox/temp/*

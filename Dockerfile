@@ -3,7 +3,7 @@ FROM azul/zulu-openjdk-alpine:8-jre AS build
 RUN apk add zip unzip curl
 
 RUN mkdir /opt/box
-RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.2.1/box-light
+RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.3.0/box-light
 
 RUN chmod -R a+rx /opt/box/box 
 

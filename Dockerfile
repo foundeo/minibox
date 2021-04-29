@@ -48,7 +48,7 @@ RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-applet.jar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-admin.lar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-doc.lar
 
-RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.2.1/box-thin
+RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/5.3.0/box-thin
 
 RUN mv /opt/box/box-thin /opt/box/box
 

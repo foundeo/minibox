@@ -28,7 +28,9 @@ The latest version is tagged under `latest` which should get you the latest vers
 
 | Version       | Java Version  | CommandBox Version |
 | ------------- | ------------- | ------------------ |
-| 2021.04       | 1.8.0_282     | 5.2.1+00295        |
+| 2021.04       | 1.8.0_282     | 5.3.0+00349        |
+| 2021.03       | 1.8.0_282     | 5.2.1+00295        |
+| 2020.11       | 1.8.0_272     | 5.2.0+00280        |
 
 
 ## Thanks

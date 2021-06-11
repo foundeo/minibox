@@ -26,8 +26,9 @@ To test it out, you can simply run this command:
 
 The latest version is tagged under `latest` which should get you the latest version of commandbox and java. Builds are also tagged each month in the format `yyyy.mm`, for production use you may want to pin such a version. If you pin the current month there is a chance it may be updated again before the end of the month.
 
-| Version       | Java Version  | CommandBox Version |
+| Tag           | Java Version  | CommandBox Version |
 | ------------- | ------------- | ------------------ |
+| 2021.05       | 1.8.0_282     | 5.3.1+00392        |
 | 2021.04       | 1.8.0_282     | 5.3.0+00349        |
 | 2021.03       | 1.8.0_282     | 5.2.1+00295        |
 | 2020.11       | 1.8.0_272     | 5.2.0+00280        |

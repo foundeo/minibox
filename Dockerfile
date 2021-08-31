@@ -41,10 +41,11 @@ RUN cp /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/compress.extension
 
 # As of CommandBox 5.4.0 zip4j not there
 #RUN cp /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/org.lucee.zip4j-* /tmp/
+RUN ls /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/*.jar
 RUN cp /tmp/compress.extension* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
-RUN cp /tmp/org.lucee.zip4j-* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
+# RUN cp /tmp/org.lucee.zip4j-* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-applet.jar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-admin.lar

@@ -36,16 +36,13 @@ RUN rm -rf /root/.CommandBox/engine/cfml/cli/lucee-server/context/logs/*
 RUN rm -rf /root/.CommandBox/engine/cfml/cli/lucee-server/context/context/admin/*
 
 # These jar files are extracted again at runtime
-# Except compress extension
+# Except compress extension is needed to extract other extensions
 RUN cp /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/compress.extension* /tmp/
-
-# As of CommandBox 5.4.0 zip4j not there
-#RUN cp /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/org.lucee.zip4j-* /tmp/
-RUN ls /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
+RUN cp /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/net.lingala.zip4j-* /tmp/
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/*.jar
 RUN cp /tmp/compress.extension* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
-# RUN cp /tmp/org.lucee.zip4j-* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
+RUN cp /tmp/net.lingala.zip4j-* /root/.CommandBox/engine/cfml/cli/lucee-server/bundles/
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-applet.jar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-admin.lar

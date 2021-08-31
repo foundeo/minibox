@@ -34,6 +34,8 @@ The latest version is tagged under `latest` which should get you the latest vers
 | 2021.03       | 1.8.0_282     | 5.2.1+00295        |
 | 2020.11       | 1.8.0_272     | 5.2.0+00280        |
 
+Starting with version `2021.08` there is a file `/etc/minibox-version` which would contain the minibox version number at build time. 
+
 
 ## Thanks
 

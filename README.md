@@ -8,7 +8,7 @@ This container was built by [Foundeo Inc.](https://foundeo.com/) to provide a sm
 
 The image currently uses the _Azul OpenJDK Alpine Linux Image_ as its base.
 
-Jave Version: 8
+Java Version: 8
 
 CommandBox Version: 5
 
@@ -28,6 +28,7 @@ The latest version is tagged under `latest` which should get you the latest vers
 
 | Tag           | Java Version  | CommandBox Version |
 | ------------- | ------------- | ------------------ |
+| 2022.08       | 1.8.0_332     | 5.5.2              |
 | 2022.05       | 1.8.0_332     | 5.5.1              |
 | 2022.04       | 1.8.0_332     | 5.5.0+00558        |
 | 2021.12       | 1.8.0_312     | 5.4.2+00453        |

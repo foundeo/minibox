@@ -71,6 +71,10 @@ RUN find /root/.CommandBox/engine/cfml/cli/lucee-server/patches/ -type f -name "
 
 RUN rm -f /root/.CommandBox/engine/cfml/cli/lucee-server/patches/*.jar
 
+#remove lucee id
+RUN rm -f /root/.CommandBox/engine/cfml/cli/lucee-server/context/id
+RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/id
+
 FROM azul/zulu-openjdk-alpine:8-jre
 
 COPY --from=build /opt/box /opt/box

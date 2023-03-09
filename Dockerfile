@@ -2,7 +2,7 @@ FROM azul/zulu-openjdk-alpine:8-jre AS build
 
 RUN apk add zip unzip curl
 
-ARG BOX_VERSION = 5.8.0
+ARG BOX_VERSION=5.8.0
 
 RUN mkdir /opt/box
 RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/$BOX_VERSION/box-light

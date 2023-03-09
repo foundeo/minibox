@@ -14,13 +14,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - id: get_box_version
-      run: |
-        curl --location -O https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/box-repo.json
-        echo "json=`cat box-repo.json`" >> $GITHUB_OUTPUT
-    - run: |
-        echo "BOX_VERSION=${{fromJson(steps.get_box_version.outputs.json).versioning.stableVersion}}" >> $GITHUB_ENV
+    - run: curl --location -O https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/box-repo.json
+    
+    - name: Extract version from box-repo.json
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+        cmd: 'jq .versioning.stableVersion box-repo.json'
+    
+    - run: echo "BOX_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
+    
     - run: echo ${{ env.BOX_VERSION }}
+    
     - name: Build and Publish the Docker image
       run: |
         date_version=$(date +%Y.%m)

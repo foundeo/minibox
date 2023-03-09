@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - id: get_box_version
       run: |
-        curl --location -o https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/box-repo.json
+        curl --location -O https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/box-repo.json
         echo "json=`cat box-repo.json`" >> $GITHUB_OUTPUT
     - run: |
         echo "BOX_VERSION=${{fromJson(steps.get_box_version.outputs.json).versioning.stableVersion}}" >> $GITHUB_ENV

@@ -25,7 +25,7 @@ jobs:
       run: |
         date_version=$(date +%Y.%m)
         echo $date_version > ./version.txt
-        docker build . --file Dockerfile --tag minibox
+        docker build . --file Dockerfile --tag minibox -e BOX_VERSION=${{ env.BOX_VERSION }}
         docker-compose build
         docker-compose up
         echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin

@@ -14,11 +14,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: curl --location -O https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/box-repo.json
+    
+    - name: Extract version from box-repo.json
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+        cmd: 'jq .versioning.stableVersion box-repo.json'
+    
+    - run: echo "BOX_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
+    
+    - run: echo ${{ env.BOX_VERSION }}
+    
     - name: Build and Publish the Docker image
       run: |
         date_version=$(date +%Y.%m)
         echo $date_version > ./version.txt
-        docker build . --file Dockerfile --tag minibox
+        docker build . --file Dockerfile --tag minibox --build-arg BOX_VERSION=${{ env.BOX_VERSION }}
         docker-compose build
         docker-compose up
         echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
@@ -38,5 +50,3 @@ jobs:
           date_version=$(date +%Y.%m)
           docker tag minibox $IMAGE_ID:$date_version
           docker push $IMAGE_ID:$date_version
-          
-        

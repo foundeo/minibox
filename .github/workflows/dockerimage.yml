@@ -19,9 +19,8 @@ jobs:
         date_version=$(date +%Y.%m)
         echo $date_version > ./version.txt
         docker build . --file Dockerfile --tag minibox
-        sudo apt-get install -y docker-compose-plugin
-        docker-compose build
-        docker-compose up
+        docker compose build
+        docker compose up
         echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
         docker tag minibox foundeo/minibox:latest
         docker push foundeo/minibox:latest

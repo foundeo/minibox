@@ -28,6 +28,7 @@ The latest version is tagged under `latest` which should get you the latest vers
 
 | Tag           | Java Version  | CommandBox Version |
 | ------------- | ------------- | ------------------ |
+| 2024.11	| 1.8.0_432	| 6.1.0		     |
 | 2022.12       | 1.8.0_362     | 5.8.0              |
 | 2022.12       | 1.8.0_352     | 5.7.0+00653        |
 | 2022.09       | 1.8.0_345     | 5.6.1+00618        |

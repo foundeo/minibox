@@ -3,8 +3,7 @@ FROM azul/zulu-openjdk-alpine:8-jre AS build
 RUN apk add zip unzip curl
 
 RUN mkdir /opt/box
-RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/6.2.0/box-light
-
+RUN curl --location -o /opt/box/box https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/6.2.1/box-light
 RUN chmod -R a+rx /opt/box/box 
 
 RUN /opt/box/box config set verboseErrors=true
@@ -48,7 +47,7 @@ RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-applet.jar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-admin.lar
 RUN rm -f /root/.CommandBox/engine/cfml/cli/cfml-web/context/lucee-doc.lar
 
-RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/6.2.0/box-thin
+RUN curl --location -o /opt/box/box-thin https://s3.amazonaws.com/downloads.ortussolutions.com/ortussolutions/commandbox/6.2.1/box-thin
 
 RUN mv /opt/box/box-thin /opt/box/box
 

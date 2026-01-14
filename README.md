@@ -10,7 +10,7 @@ The image currently uses the _Azul OpenJDK Alpine Linux Image_ as its base.
 
 Java Version: 8
 
-CommandBox Version: 5
+CommandBox Version: 6
 
 ## Pre-warmed
 
@@ -28,7 +28,8 @@ The latest version is tagged under `latest` which should get you the latest vers
 
 | Tag           | Java Version  | CommandBox Version |
 | ------------- | ------------- | ------------------ |
-| 2024.11	| 1.8.0_432	| 6.1.0		     |
+| 2026.01		| 1.8.0_472		| 6.3.1+00853		 |
+| 2024.11		| 1.8.0_432		| 6.1.0		     	 |
 | 2022.12       | 1.8.0_362     | 5.8.0              |
 | 2022.12       | 1.8.0_352     | 5.7.0+00653        |
 | 2022.09       | 1.8.0_345     | 5.6.1+00618        |

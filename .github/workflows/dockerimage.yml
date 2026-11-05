@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '5 5 5 * *'
-  
 
 jobs:
 
@@ -12,31 +11,47 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Build and Publish the Docker image
+    - uses: actions/checkout@v4
+
+    - name: Set version
+      run: echo "DATE_VERSION=$(date +%Y.%m)" >> "$GITHUB_ENV"
+
+    - name: Build and test the Docker image
       run: |
-        date_version=$(date +%Y.%m)
-        echo $date_version > ./version.txt
+        echo "$DATE_VERSION" > ./version.txt
         docker build . --file Dockerfile --tag minibox
         docker compose build
         docker compose up
-        echo "${{ secrets.DOCKER_PASS }}" | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin
-        docker tag minibox foundeo/minibox:latest
-        docker push foundeo/minibox:latest
-        docker tag minibox foundeo/minibox:$date_version
-        docker push foundeo/minibox:$date_version
-        docker logout
-    - name: Log into github registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-    - name: Push image to github registry
+
+    - name: Log into Docker Hub
+      uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+      with:
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASS }}
+
+    - name: Push image to Docker Hub
       run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/minibox
-          
-          docker tag minibox $IMAGE_ID:latest
-          docker push $IMAGE_ID:latest
-          date_version=$(date +%Y.%m)
-          docker tag minibox $IMAGE_ID:$date_version
-          docker push $IMAGE_ID:$date_version
-          
-        
+        docker tag minibox foundeo/minibox:latest
+        docker tag minibox foundeo/minibox:$DATE_VERSION
+        docker push foundeo/minibox:latest
+        docker push foundeo/minibox:$DATE_VERSION
+
+    - name: Log into GitHub Container Registry
+      uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Push image to GitHub Container Registry
+      run: |
+        IMAGE_ID=ghcr.io/foundeo/minibox
+        docker tag minibox $IMAGE_ID:latest
+        docker tag minibox $IMAGE_ID:$DATE_VERSION
+        docker push $IMAGE_ID:latest
+        docker push $IMAGE_ID:$DATE_VERSION

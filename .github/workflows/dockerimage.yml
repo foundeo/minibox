@@ -50,7 +50,7 @@ jobs:
 
     - name: Push image to GitHub Container Registry
       run: |
-        IMAGE_ID=ghcr.io/foundeo/minibox
+        IMAGE_ID=ghcr.io/foundeo/minibox/minibox
         docker tag minibox $IMAGE_ID:latest
         docker tag minibox $IMAGE_ID:$DATE_VERSION
         docker push $IMAGE_ID:latest
